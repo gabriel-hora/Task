@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.task.R
 import com.example.task.databinding.FragmentLoginBinding
 import com.example.task.databinding.FragmentRecoverAccountBinding
+import com.example.task.helper.FirebaseHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -56,8 +57,11 @@ class RecoverAccountFragment : Fragment() {
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "E-mail enviado", Toast.LENGTH_SHORT).show()
                 } else {
-                    binding.progressBar.isVisible = false
-                    Toast.makeText(requireContext(), "ERRO", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        FirebaseHelper.validError(task.exception?.message ?: ""),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 binding.progressBar.isVisible = false
             }

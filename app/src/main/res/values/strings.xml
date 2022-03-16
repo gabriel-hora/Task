@@ -4,6 +4,7 @@
     <!--Generics-->
     <string name="text_email">E-mail</string>
     <string name="text_password">Senha</string>
+    <string name="error_generic">Ocorreu um erro, por favor tente novamente mais tarde.</string>
 
     <!--Login Fragment-->
     <string name="text_btn_login_fragment">Login</string>
@@ -16,6 +17,21 @@
 
     <!--Recover Account Fragment-->
     <string name="text_btn_recover_fragment">Enviar</string>
+
+    <!-- Erros Firebase Authentication -->
+    <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
+    <string name="invalid_email_register_fragment">Insira um e-mail válido.</string>
+    <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
+    <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
+    <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
+
+
+    <!-- Form Task Fragment -->
+    <string name="text_title_form_task_fragment">Nova Tarefa</string>
+    <string name="text_task_form_fragment">Tarefa</string>
+    <string name="text_status_form_fragment">Status</string>
+    <string name="text_btn_save_task_form_fragment">Salvar</string>
+
 
 
 

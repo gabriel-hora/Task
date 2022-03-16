@@ -32,6 +32,9 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_formTaskFragment"
+            app:destination="@id/formTaskFragment" />
     </fragment>
     <navigation
         android:id="@+id/navigation"
@@ -65,4 +68,9 @@
             app:popUpToInclusive="true"
             />
     </navigation>
+    <fragment
+        android:id="@+id/formTaskFragment"
+        android:name="com.example.task.ui.FormTaskFragment"
+        android:label="fragment_form_task"
+        tools:layout="@layout/fragment_form_task" />
 </navigation>
