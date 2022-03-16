@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -77,7 +77,7 @@
                 android:text="@string/text_status_form_fragment"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/description" />
 
 
             <RadioGroup
@@ -90,14 +90,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
                 <RadioButton
+                    android:id="@+id/rbTodo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
                     android:buttonTint="@color/white"
                     android:text="A Fazer"
                     android:textColor="@color/white" />
 
                 <RadioButton
+                    android:id="@+id/rbDoing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -106,6 +109,7 @@
                     android:textColor="@color/white" />
 
                 <RadioButton
+                    android:id="@+id/rbDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -117,7 +121,7 @@
             </RadioGroup>
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -140,7 +144,7 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+                app:layout_constraintTop_toBottomOf="@+id/btnSave"
                 tools:visibility="visible" />
 
 
