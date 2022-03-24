@@ -15,11 +15,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/idToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_default">
+            android:background="@color/color_default"
+            app:navigationIcon="@drawable/ic_arrow_back">
 
             <TextView
+                android:id="@+id/txtToolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

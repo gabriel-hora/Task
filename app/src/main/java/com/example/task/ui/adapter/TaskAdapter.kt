@@ -10,12 +10,14 @@ import com.example.task.R
 import com.example.task.databinding.ItemAdapterBinding
 import com.example.task.model.Task
 
+//Classe Adapter, adaptação para o RecyclerView
 class TaskAdapter(
     private val context: Context,
     private val taskList: List<Task>,
     val taskSelected: (Task, Int) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
+    // estâncias de objetos
     companion object {
         val SELECT_BACK: Int = 1
         val SELECT_REMOVE: Int = 2

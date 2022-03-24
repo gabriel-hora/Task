@@ -8,13 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.task.R
 import com.example.task.databinding.FragmentFormTaskBinding
+import com.example.task.helper.BaseFragment
 import com.example.task.helper.FirebaseHelper
+import com.example.task.helper.initToolbar
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ktx.Firebase
 
-class FormTaskFragment : Fragment() {
+class FormTaskFragment : BaseFragment() {
+
+    private val args: FormTaskFragmentArgs by navArgs()
 
     private var _binding: FragmentFormTaskBinding? = null
     private val binding get() = _binding!!
@@ -33,8 +38,44 @@ class FormTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(binding.idToolbar)
 
         initListener()
+        getArgs()
+    }
+
+    private fun getArgs() {
+        args.task.let {
+            if (it != null) {
+                task = it
+                configTask()
+            }
+        }
+    }
+
+    private fun configTask() {
+        newTask = false
+        statusTask = task.status
+        binding.txtToolbar.text = "Editando tarefa.."
+
+        binding.description.setText(task.description)
+        setStatus()
+    }
+
+    private fun setStatus() {
+        binding.radioGroup.check(
+            when (task.status) {
+                0 -> {
+                    R.id.rbTodo
+                }
+                1 -> {
+                    R.id.rbDoing
+                }
+                else -> {
+                    R.id.rbDone
+                }
+            }
+        )
     }
 
     private fun initListener() {
@@ -55,6 +96,8 @@ class FormTaskFragment : Fragment() {
         val description = binding.description.text.toString()
 
         if (description.isNotEmpty()) {
+
+            hideKeyboard()
 
             binding.progressBar.isVisible = true
 
@@ -83,12 +126,20 @@ class FormTaskFragment : Fragment() {
             .setValue(task)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (newTask){ // Nova Tarefa
+                    if (newTask) { // Nova Tarefa
                         findNavController().popBackStack()
-                        Toast.makeText(requireContext(), "Tarefa salva com sucesso", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Tarefa salva com sucesso",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {//Editando tarefa
                         binding.progressBar.isVisible = false
-                        Toast.makeText(requireContext(), "Tarefa salva com sucesso", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Tarefa salva com sucesso",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
                     Toast.makeText(requireContext(), "Erro ao salvar", Toast.LENGTH_SHORT)

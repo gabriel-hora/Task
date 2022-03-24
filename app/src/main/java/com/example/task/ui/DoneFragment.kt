@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.task.R
 import com.example.task.databinding.FragmentDoneBinding
@@ -57,7 +58,7 @@ class DoneFragment : Fragment() {
                             if (task.status == 2) taskList.add(task)
                         }
                         binding.progressBar.isVisible = false
-                        binding.textInfo.text = ""
+                        taskEmpty()
 
                         taskList.reverse()
                         initAdapter()
@@ -71,6 +72,14 @@ class DoneFragment : Fragment() {
                 }
 
             })
+    }
+
+    private fun taskEmpty() {
+        binding.textInfo.text = if(taskList.isEmpty()){
+            getText(R.string.text_task_list_empty_done_fragment)
+        } else {
+            ""
+        }
     }
 
     private fun initAdapter() {
@@ -87,7 +96,45 @@ class DoneFragment : Fragment() {
             TaskAdapter.SELECT_REMOVE -> {
                 deleteTask(task)
             }
+            TaskAdapter.SELECT_EDIT -> {
+                val action = HomeFragmentDirections
+                    .actionHomeFragmentToFormTaskFragment(task)
+                findNavController().navigate(action)
+            }
+            TaskAdapter.SELECT_BACK -> {
+                task.status = 1
+                updateTask(task)
+            }
         }
+    }
+
+    private fun updateTask(task: Task) {
+        FirebaseHelper
+            .getDatabase()
+            .child("task")
+            .child(FirebaseHelper.getIdUser() ?: "")
+            .child(task.id)
+            .setValue(task)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Tarefa salva com sucesso",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Erro ao salvar",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            .addOnFailureListener { task ->
+                binding.progressBar.isVisible = false
+                Toast.makeText(requireContext(), "Não foi possível salvar", Toast.LENGTH_SHORT)
+                    .show()
+            }
     }
 
     private fun deleteTask(task: Task){

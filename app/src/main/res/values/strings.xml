@@ -32,7 +32,9 @@
     <string name="text_status_form_fragment">Status</string>
     <string name="text_btn_save_task_form_fragment">Salvar</string>
 
-
-
+    <!--    Empty Fragment-->
+    <string name="text_task_list_empty_todo_fragment">Nenhuma tarefa a fazer</string>
+    <string name="text_task_list_empty_doing_fragment">Nenhuma tarefa em andamento</string>
+    <string name="text_task_list_empty_done_fragment">Nenhuma tarefa pronta</string>
 
 </resources>

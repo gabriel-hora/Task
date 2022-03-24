@@ -7,14 +7,17 @@ import com.google.firebase.database.FirebaseDatabase
 class FirebaseHelper {
 
     companion object {
+        //Recuperar a Instância do Firebase (Referência)
+        fun getDatabase() = FirebaseDatabase.getInstance().reference
 
-        fun getDatabase() = FirebaseDatabase.getInstance().reference //Recuperar a Instância do Firebase (Referência)
+        //Recuperar a instância do usuário (Verificar se está "Autenticado no Banco")
+        private fun getAuth() = FirebaseAuth.getInstance()
 
-        private fun getAuth() = FirebaseAuth.getInstance() //Recuperar a instância do usuário (Verificar se está "Autenticado no Banco")
+        //Recuperar o ID do usuario Logado
+        fun getIdUser() = getAuth().uid
 
-        fun getIdUser() = getAuth().uid //Recuperar o ID do usuario Logado
-
-        fun inAutenticated() = getAuth().currentUser != null //Verificar se está logado no APP
+        //Verificar se está logado no APP
+        fun inAutenticated() = getAuth().currentUser != null
 
 
         // Validação de erros em Inglês e transformar em PT
