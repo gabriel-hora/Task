@@ -14,6 +14,7 @@ import com.example.task.databinding.FragmentRegisterBinding
 import com.example.task.helper.BaseFragment
 import com.example.task.helper.FirebaseHelper
 import com.example.task.helper.initToolbar
+import com.example.task.helper.showBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -60,10 +61,10 @@ class RegisterFragment : BaseFragment() {
 
 
             } else {
-                Toast.makeText(requireContext(), "informe seu senha", Toast.LENGTH_SHORT).show()
+                showBottomSheet(message = R.string.text_password_empty_login_fragment)
             }
         } else {
-            Toast.makeText(requireContext(), "informe seu e-mail", Toast.LENGTH_SHORT).show()
+            showBottomSheet(message = R.string.text_email_empty_login_fragment)
         }
     }
 
@@ -73,11 +74,10 @@ class RegisterFragment : BaseFragment() {
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        FirebaseHelper.validError(task.exception?.message ?: ""),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showBottomSheet(message = FirebaseHelper.validError(
+                        task.exception?.message ?: ""
+                    )
+                    )
                     binding.progressBar.isVisible = false
                 }
             }

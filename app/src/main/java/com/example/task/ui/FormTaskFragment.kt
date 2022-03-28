@@ -14,6 +14,7 @@ import com.example.task.databinding.FragmentFormTaskBinding
 import com.example.task.helper.BaseFragment
 import com.example.task.helper.FirebaseHelper
 import com.example.task.helper.initToolbar
+import com.example.task.helper.showBottomSheet
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ktx.Firebase
 
@@ -108,11 +109,7 @@ class FormTaskFragment : BaseFragment() {
             saveTask()
 
         } else {
-            Toast.makeText(
-                requireContext(),
-                "Informe uma descrição para a Tarefa",
-                Toast.LENGTH_SHORT
-            ).show()
+            showBottomSheet(message = R.string.text_empty_edit_text_form_fragment)
         }
 
     }
@@ -142,8 +139,7 @@ class FormTaskFragment : BaseFragment() {
                         ).show()
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Erro ao salvar", Toast.LENGTH_SHORT)
-                        .show()
+                    showBottomSheet(message = R.string.text_error_save_form_fragment)
                 }
             }
             .addOnFailureListener { task ->
@@ -157,5 +153,4 @@ class FormTaskFragment : BaseFragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

@@ -10,6 +10,8 @@
     <string name="text_btn_login_fragment">Login</string>
     <string name="text_register_login_fragment">Criar Conta</string>
     <string name="text_recover_login_fragment">Recuperar conta</string>
+    <string name="text_password_empty_login_fragment">Informe sua Senha</string>
+    <string name="text_email_empty_login_fragment">Informe seu e-mail</string>
 
     <!--Register Fragment-->
     <string name="text_btn_register_fragment">Criar conta</string>
@@ -31,10 +33,19 @@
     <string name="text_task_form_fragment">Tarefa</string>
     <string name="text_status_form_fragment">Status</string>
     <string name="text_btn_save_task_form_fragment">Salvar</string>
+    <string name="text_empty_edit_text_form_fragment">Informe uma descrição para a Tarefa</string>
+    <string name="text_error_save_form_fragment">Erro ao salvar</string>
 
     <!--    Empty Fragment-->
     <string name="text_task_list_empty_todo_fragment">Nenhuma tarefa a fazer</string>
     <string name="text_task_list_empty_doing_fragment">Nenhuma tarefa em andamento</string>
     <string name="text_task_list_empty_done_fragment">Nenhuma tarefa pronta</string>
+
+    <!-- BottomSheet-->
+    <string name="text_title_bottom_sheet">Atenção</string>
+    <string name="text_messagem_bottom_sheet">Message</string>
+    <string name="text_btn_bottom_sheet">Entendi</string>
+    <string name="text_send_bottom_sheet">E-mail Enviado com Sucesso</string>
+
 
 </resources>
