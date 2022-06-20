@@ -49,7 +49,7 @@
         android:background="@drawable/bg_button"
         android:text="@string/text_btn_bottom_sheet"
         android:textColor="@color/white"
-        app:backgroundTint="@color/color_default"
+        app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
